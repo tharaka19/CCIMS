@@ -1,0 +1,34 @@
+# Configures the server port for the EQUIPMENT Service
+server:
+  port: 9004
+
+# Configures the Spring application name for the EQUIPMENT Service
+spring:
+  application:
+    name: EQUIPMENT-SERVICE
+
+  # The database connection details, and JPA/Hibernate settings.
+  datasource:
+    url: jdbc:mysql://localhost:3306/cims_equipment
+    username: root
+    password: Sheliya@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+# Configures the Eureka client for the EQUIPMENT Service
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      hostname: localhost
+
+# Configures management tracing for the application
+management:
+  tracing:
+    sampling:
+      probability: 1.0

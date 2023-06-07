@@ -1,0 +1,39 @@
+# Configures the server port for the EMPLOYEE Service
+server:
+  port: 9003
+
+# Configures the Spring application name for the EMPLOYEE Service
+spring:
+  application:
+    name: EMPLOYEE-SERVICE
+
+  # The database connection details, and JPA/Hibernate settings.
+  datasource:
+    url: jdbc:mysql://localhost:3306/cims_employee
+    username: root
+    password: Sheliya@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+# Configures the Eureka client for the EMPLOYEE Service
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      hostname: localhost
+
+# Configures management tracing for the application
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+# The file location paths for the CIMS project.
+document:
+  location: "C:/Users/MSI/Documents/Project/BSc/CIMS/File"
+  paySlip: "C:/Users/MSI/Documents/Project/BSc/CIMS/File/PaySlip"

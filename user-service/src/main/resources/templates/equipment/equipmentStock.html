@@ -1,0 +1,284 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{fragments/head :: head}"></div>
+<body>
+<div id="layout-wrapper">
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div th:replace="~{fragments/left-menu :: menu}"></div>
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-0">Manage Equipment Stock</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="" class="custom-accordion">
+                            <div class="card">
+                                <div class="p-4 border-top">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="equipment_type">Equipment Type</label>
+                                                <select class="form-select" id="equipment_type"
+                                                        onchange="getAllActiveEquipmentsByEquipmentType(value)">
+                                                    <option value="NONE">Select an Equipment Type</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="equipment">Equipment</label>
+                                                <select class="form-select" id="equipment">
+                                                    <option value="NONE">Select an Equipment</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="equipment_supplier">Equipment
+                                                    Supplier</label>
+                                                <select class="form-select" id="equipment_supplier">
+                                                    <option value="NONE">Select an Equipment Supplier</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <input id="equipment_stock_id" type="hidden">
+                                <div class="p-4 border-top">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="equipment_stock_number">Stock
+                                                    Number</label>
+                                                <input id="equipment_stock_number" name="equipment_stock_number"
+                                                       type="text"
+                                                       class="form-control" placeholder="Enter Equipment Number">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="equipment_purchase_price">Purchase
+                                                    Price</label>
+                                                <input id="equipment_purchase_price" name="equipment_purchase_price"
+                                                       type="number"
+                                                       class="form-control" placeholder="Enter Purchase Price">
+                                            </div>
+                                        </div>
+                                        <!--            <div class="col-lg-4">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="equipment_quantity">Equipment
+                                                                Quantity</label>
+                                                            <input id="equipment_quantity" name="equipment_quantity"
+                                                                   type="number"
+                                                                   class="form-control" placeholder="Enter Equipment Quantity">
+                                                        </div>
+                                                    </div>-->
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="equipment_stock_status">Status</label>
+                                                <select class="form-select" id="equipment_stock_status">
+                                                    <option value="NONE">Select a Status</option>
+                                                    <option value="ACTIVE">Active</option>
+                                                    <option value="INACTIVE">Inactive</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="mb-3">
+                                                <label> </label>
+                                                <label> </label>
+                                                <div>
+                                                    <input class="btn btn-primary btn-flat" id="saveBtn"
+                                                           type="button" value="Create"
+                                                           onclick="saveUpdateEquipmentStock()">
+                                                    <input class="btn btn-success btn-flat" id="restBtn"
+                                                           type="button" value="Reset"
+                                                           onclick="clearEquipmentStockFields()">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Form Layout -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="equipment_stock_table"
+                                       class="table table-striped table-bordered dt-responsive nowrap"
+                                       style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                    <tr>
+                                        <th>Stock Number</th>
+                                        <th>Equipment Number</th>
+                                        <th>Equipment Supplier Name</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+
+                <!-- staticBackdrop Modal -->
+                <div class="modal fade" id="equipmentStockBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                     tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteStaticBackdropLabel">Delete</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                        id="delete_close_btn">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Do you really want to delete this record?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">No</button>
+                                <button type="button" class="btn btn-danger waves-effect waves-light"
+                                        onclick="delete_equipment_stock()">Yes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  Large modal example -->
+                <div class="modal fade" id="equipmentStockUpdateBackdrop" tabindex="-1" role="dialog"
+                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myLargeModalLabel">Manage Equipment Stock History</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="p-4 border-top">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="equipment_number">Equipment Number</label>
+                                            <input id="equipment_number" name="equipment_number" type="text"
+                                                   class="form-control" placeholder="Equipment Number"
+                                                   readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="equipment_name">Equipment Name</label>
+                                            <input id="equipment_name" name="equipment_name" type="text"
+                                                   class="form-control" placeholder="Equipment Name"
+                                                   readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="available_quantity">Available
+                                                Quantity</label>
+                                            <input id="available_quantity" name="available_quantity" type="text"
+                                                   class="form-control" placeholder="Available Quantity"
+                                                   readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="equipment_stock_operation">Operation</label>
+                                            <select class="form-select" id="equipment_stock_operation">
+                                                <option value="NONE">Select a operation</option>
+                                                <option value="ADD">Add</option>
+                                                <option value="DEFECT">Defect</option>
+                                                <option value="REMOVE">Remove</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="equipment_history_quantity">Equipment
+                                                Quantity</label>
+                                            <input id="equipment_history_quantity" name="equipment_history_quantity"
+                                                   type="number"
+                                                   class="form-control" placeholder="Equipment Quantity">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label"
+                                                   for="equipment_stock_history_note">History Note</label>
+                                            <textarea id="equipment_stock_history_note"
+                                                      name="equipment_stock_history_note"
+                                                      class="form-control"
+                                                      placeholder="History Note"></textarea></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <div>
+                                                </button>
+                                                <input class="btn btn-primary btn-flat" id="saveEHBtn"
+                                                       type="button" value="Update"
+                                                       onclick="saveUpdateEquipmentStockHistory()">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <table id="equipment_stock_history_table"
+                                                       class="table table-striped table-bordered dt-responsive nowrap"
+                                                       style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Stock Number</th>
+                                                        <th>Operation</th>
+                                                        <th>Equipment Quantity</th>
+                                                        <th>History Note</th>
+                                                        <th>Date</th>
+                                                    </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end col -->
+                                </div> <!-- end row -->
+
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <div th:replace="~{fragments/footer :: footer}"></div>
+        <!-- End Page-content -->
+    </div>
+    <!-- end main content-->
+</div>
+<div th:replace="~{fragments/footer-js :: js}"></div>
+<script src="/user/js/module/common.js"></script>
+<script src="/user/js/module/equipment/equipmentStock.js"></script>
+</body>
+</html>

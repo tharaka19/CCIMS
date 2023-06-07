@@ -1,0 +1,28 @@
+# Configures the server port for the CLIENT Service
+server:
+  port: 9006
+
+# Configures the Spring application name for the CLIENT Service
+spring:
+  application:
+    name: CLIENT-SERVICE
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/
+      database: cims_client
+
+# Configures the Eureka client for the CLIENT Service
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      hostname: localhost
+
+# Configures management tracing for the application
+management:
+  tracing:
+    sampling:
+      probability: 1.0

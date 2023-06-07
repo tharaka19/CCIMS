@@ -1,0 +1,18 @@
+# Configures the server port for the AUTH Service
+server:
+  port: 8765
+
+# Configures the Spring application name for the AUTH Service
+spring:
+  application:
+    name: AUTH-SERVICE
+
+# Configures the Eureka client for the AUTH Service
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      hostname: localhost

@@ -1,0 +1,223 @@
+<div class="menu" th:fragment="menu" xmlns:th="http://www.thymeleaf.org">
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="vertical-menu">
+        <!-- LOGO -->
+        <div class="navbar-brand-box">
+            <a href="index.html" class="logo logo-dark"> <span class="logo-sm">
+					MC
+					</span> <span class="logo-lg">
+						CIMS
+					</span> </a>
+            <a href="index.html" class="logo logo-light"> <span class="logo-sm">
+						<img src="/user/images/logo-sm.png" alt="" height="22">
+					</span> <span class="logo-lg">
+						<img src="/user/images/logo-light.png" alt="" height="20">
+					</span> </a>
+        </div>
+        <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect vertical-menu-btn"><i
+                class="fa fa-fw fa-bars"></i></button>
+        <div data-simplebar class="sidebar-menu-scroll">
+            <!--- Sidemenu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="metismenu list-unstyled" id="side-menu">
+                    <li class="menu-title">MAIN NAVIGATION</li>
+                    <li>
+                        <a href="javascript:internalPageRedirection('dashboard')"> <i class="iconify "
+                                                                                      data-icon="uil-home-alt"
+                                                                                      data-inline="false"></i>&nbsp;<span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect"> <i class="iconify "
+                                                                                          data-icon="uil:folder-open"
+                                                                                          data-inline="false"></i>&nbsp;<span
+                                class="nav-text">Employee</span> </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li id="company-company">
+                                <a href="javascript:internalPageRedirection('employee-employee')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Employee
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li id="employee-profile">
+                                <a href="javascript:internalPageRedirection('employee-profile')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Employee Profile
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li id="employee-document">
+                                <a href="javascript:internalPageRedirection('employee-document')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Employee Document
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li id="company-profile">
+                                <a href="javascript:internalPageRedirection('employee-history')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Employee History
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li id="company-salary">
+                                <a href="javascript:internalPageRedirection('employee-salary')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Employee Salary
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect"> <i class="iconify "
+                                                                                          data-icon="uil:folder-open"
+                                                                                          data-inline="false"></i>&nbsp;<span
+                                class="nav-text">Equipment</span> </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li id="equipment-equipment">
+                                <a href="javascript:internalPageRedirection('equipment-equipment')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Equipment
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li id="equipment-supplier">
+                                <a href="javascript:internalPageRedirection('equipment-supplier')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Equipment Supplier
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li id="equipment-stock">
+                                <a href="javascript:internalPageRedirection('equipment-stock')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Equipment Stock
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect"> <i class="iconify "
+                                                                                          data-icon="uil:folder-open"
+                                                                                          data-inline="false"></i>&nbsp;<span
+                                class="nav-text">Project</span> </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li id="project-project">
+                                <a href="javascript:internalPageRedirection('project-project')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Project
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li id="project-client-project">
+                                <a href="javascript:internalPageRedirection('project-client')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Client Project
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect"> <i class="iconify "
+                                                                                          data-icon="uil:folder-open"
+                                                                                          data-inline="false"></i>&nbsp;<span
+                                class="nav-text">Client</span> </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li id="client-client">
+                                <a href="javascript:internalPageRedirection('client-client')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Client
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect"> <i class="iconify "
+                                                                                          data-icon="uil:folder-open"
+                                                                                          data-inline="false"></i>&nbsp;<span
+                                class="nav-text">Setting</span> </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li id="settings-user-role">
+                                <a href="javascript:internalPageRedirection('settings-user-role')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    User Role
+                                </a>
+                            </li>
+                            <li id="settings-user">
+                                <a href="javascript:internalPageRedirection('settings-user-account')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    User Account
+                                </a>
+                            </li>
+                            <li id="settings-financial-year">
+                                <a href="javascript:internalPageRedirection('settings-financial-year')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Financial year
+                                </a>
+                            </li>
+                            <li id="settings-employee-type">
+                                <a href="javascript:internalPageRedirection('settings-employee-type')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Employee Type
+                                </a>
+                            </li>
+                            <li id="settings-allowance-type">
+                                <a href="javascript:internalPageRedirection('settings-allowance-type')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Allowance Type
+                                </a>
+                            </li>
+                            <li id="settings-document-type">
+                                <a href="javascript:internalPageRedirection('settings-document-type')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Document Type
+                                </a>
+                            </li>
+                            <li id="settings-equipment-type">
+                                <a href="javascript:internalPageRedirection('settings-equipment-type')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Equipment Type
+                                </a>
+                            </li>
+                            <li id="settings-project-type">
+                                <a href="javascript:internalPageRedirection('settings-project-type')">
+                                    <i class="iconify " data-icon="ion:checkmark-circle-outline"
+                                       data-inline="false"></i>
+                                    Project Type
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+</div>

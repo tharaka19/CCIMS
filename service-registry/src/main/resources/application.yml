@@ -1,0 +1,14 @@
+# Configures the server port for the SERVICE REGISTRY
+server:
+  port: 8761
+
+# Configures the Spring application name for the SERVICE REGISTRY
+spring:
+  application:
+    name: SERVICE-REGISTRY
+
+# Configures the Eureka client for the SERVICE REGISTRY
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

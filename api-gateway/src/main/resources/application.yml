@@ -1,0 +1,82 @@
+# Configures the server port for the API Gateway
+server:
+  port: 8764
+
+# Configures the Spring application name for the API Gateway
+spring:
+  application:
+    name: API-GATEWAY
+
+  # Configures the API Gateway to use Spring Cloud Gateway
+  cloud:
+    gateway:
+      routes:
+        # Configures a route for the authentication service
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+
+        # Configures a route for the admin service
+        - id: ADMIN-SERVICE
+          uri: lb://ADMIN-SERVICE
+          predicates:
+            - Path=/admin/**
+          # Configures a filter to authenticate requests to the admin service
+          filters:
+            - AuthenticationFilter
+
+        # Configures a route for the user service
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user/**
+          # Configures a filter to authenticate requests to the user service
+          filters:
+            - AuthenticationFilter
+
+        # Configures a route for the employee service
+        - id: EMPLOYEE-SERVICE
+          uri: lb://EMPLOYEE-SERVICE
+          predicates:
+            - Path=/employee/**
+          # Configures a filter to authenticate requests to the employee service
+          filters:
+            - AuthenticationFilter
+
+        # Configures a route for the equipment service
+        - id: EQUIPMENT-SERVICE
+          uri: lb://EQUIPMENT-SERVICE
+          predicates:
+            - Path=/equipment/**
+          # Configures a filter to authenticate requests to the equipment service
+          filters:
+            - AuthenticationFilter
+
+        # Configures a route for the project service
+        - id: PROJECT-SERVICE
+          uri: lb://PROJECT-SERVICE
+          predicates:
+            - Path=/project/**
+          # Configures a filter to authenticate requests to the project service
+          filters:
+            - AuthenticationFilter
+
+        # Configures a route for the client service
+        - id: CLIENT-SERVICE
+          uri: lb://CLIENT-SERVICE
+          predicates:
+            - Path=/client/**
+          # Configures a filter to authenticate requests to the client service
+          filters:
+            - AuthenticationFilter
+
+# Configures the Eureka client for the API Gateway
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      hostname: localhost
